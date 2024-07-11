@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:weather/presentation/home/presentation/main_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather/features/main/home/bloc/home_bloc.dart';
+import 'package:weather/features/main/main_page.dart';
 
 void main() {
-  runApp(WeatherApp());
+  runApp(const WeatherApp());
 }
 
 class WeatherApp extends StatelessWidget {
@@ -12,7 +14,10 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
+      home: BlocProvider(
+        create: (context) => HomeBloc(),
+        child: const MainPage(),
+      ),
     );
   }
 }
