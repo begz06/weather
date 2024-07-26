@@ -16,6 +16,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _indexNum = 1;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  late PersistentBottomSheetController controller;
 
   final List<Widget> navBars = const [
     SearchingPage(),
@@ -32,27 +33,25 @@ class _MainPageState extends State<MainPage> {
         color: const Color(0xff2E335A),
         index: 1,
         onTap: (index) {
-          setState(() {
-            _indexNum = index;
-            if (_indexNum == 2) {
-              _scaffoldKey.currentState?.showBottomSheet(
-                backgroundColor: Colors.transparent,
-                constraints: BoxConstraints(
+          if (index == 2) {
+            controller = _scaffoldKey.currentState!.showBottomSheet(
+              backgroundColor: Colors.transparent,
+              constraints: BoxConstraints(
                   maxWidth: MediaQuery.sizeOf(context).width,
-                  maxHeight: MediaQuery.sizeOf(context).height * 05),
-                (ctx) => MenuPage(),
-              );
-
-              // showBottomSheet(
-              //     context: context,
-              //     constraints: BoxConstraints(
-              //       maxHeight: MediaQuery.sizeOf(context).height * 05,
-              //     ),
-              //     builder: (context) {
-              //       return MenuPage();
-              //     });
+                  maxHeight: MediaQuery.sizeOf(context).height * 0.5),
+              (context) => const MenuPage(),
+            );
+            setState(() {
+              _indexNum = 1;
+            });
+          } else {
+            if (controller != null) {
+              controller.close();
             }
-          });
+            setState(() {
+              _indexNum = index;
+            });
+          }
         },
         items: [
           SvgPicture.asset(AppIcons.location),

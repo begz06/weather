@@ -6,8 +6,8 @@ class MenuPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.sizeOf(context).height*05,
-      
+      height: MediaQuery.sizeOf(context).height*0.5,
+      color: Colors.white,
       
       child: Column(
         mainAxisSize: MainAxisSize.min,
