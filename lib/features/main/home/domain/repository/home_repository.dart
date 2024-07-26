@@ -39,7 +39,7 @@ class HomeRepository {
           "https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=387183b2a69af215c09440795db19973",
           );
       if ((response.statusCode == 200) || (response.statusCode == 201)) {
-        print("whether is>>--: ${response.data} ");
+        print("weather is>>--: ${response.data} ");
         return WeatherResponse.fromJson(response.data);
       } else {
         print(

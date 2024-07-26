@@ -15,6 +15,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _indexNum = 1;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final List<Widget> navBars = const [
     SearchingPage(),
@@ -25,6 +26,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: const Color(0xff262C51),
         color: const Color(0xff2E335A),
@@ -32,6 +34,24 @@ class _MainPageState extends State<MainPage> {
         onTap: (index) {
           setState(() {
             _indexNum = index;
+            if (_indexNum == 2) {
+              _scaffoldKey.currentState?.showBottomSheet(
+                backgroundColor: Colors.transparent,
+                constraints: BoxConstraints(
+                  maxWidth: MediaQuery.sizeOf(context).width,
+                  maxHeight: MediaQuery.sizeOf(context).height * 05),
+                (ctx) => MenuPage(),
+              );
+
+              // showBottomSheet(
+              //     context: context,
+              //     constraints: BoxConstraints(
+              //       maxHeight: MediaQuery.sizeOf(context).height * 05,
+              //     ),
+              //     builder: (context) {
+              //       return MenuPage();
+              //     });
+            }
           });
         },
         items: [

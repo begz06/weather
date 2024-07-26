@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                             style: TextStyle(fontSize: 34, color: Colors.white),
                           ),
                           Text(
-                            '${state.temp}°',
+                            '${state.temp!.toInt()}°',
                             style: const TextStyle(fontSize: 80, color: Colors.white),
                           ),
                           const Text(
